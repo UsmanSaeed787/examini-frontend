@@ -6,9 +6,7 @@ Examini enables teachers to upload course materials and let AI plan, generate, a
 
 **Built for:** teachers, university lecturers, training coordinators, and institution administrators.
 
-> **🔗 Live App →** [https://examini-demo.vercel.app](https://examini-demo.vercel.app)
->
-> **🔗 API →** [https://examini-backend.onrender.com](https://examini-backend.onrender.com)
+> **🔗 Live App →** [https://examini-indol.vercel.app](https://examini-indol.vercel.app)
 
 ---
 
