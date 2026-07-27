@@ -5,34 +5,38 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { GoogleLogin } from "@react-oauth/google";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/store/auth-store";
-import { GOOGLE_CLIENT_ID } from "@/lib/constants";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { login, loginWithGoogle, isLoading, error, clearError } =
-    useAuthStore();
+  const { login, isLoading, error, clearError } = useAuthStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
+
+  const handleQuickFillAdmin = () => {
+    setValue("email", "admin@examini.com");
+    setValue("password", "Admin@123");
+    toast.success("Admin credentials auto-filled!");
+  };
 
   const onSubmit = async (data: LoginFormData) => {
     setIsSubmitting(true);
@@ -42,57 +46,16 @@ export const LoginForm: React.FC = () => {
       await login(data.email, data.password);
       toast.success("Login successful!");
 
-      // Redirect based on user role
       const userStr =
         typeof window !== "undefined" ? localStorage.getItem("user") : null;
       if (userStr) {
-        const user = JSON.parse(userStr);
-        if (user.role === "admin") {
-          router.push("/dashboard");
-        } else if (user.role === "teacher") {
-          router.push("/dashboard");
-        } else if (user.role === "student") {
-          router.push("/dashboard");
-        }
+        router.push("/dashboard");
       }
     } catch (err: any) {
       toast.error(err.response?.data?.error?.message || "Login failed");
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleGoogleSuccess = async (credentialResponse: any) => {
-    if (!credentialResponse.credential) {
-      toast.error("Failed to get Google credentials");
-      return;
-    }
-
-    try {
-      clearError();
-      await loginWithGoogle(credentialResponse.credential);
-      toast.success("Login successful!");
-
-      // Redirect based on user role
-      const userStr =
-        typeof window !== "undefined" ? localStorage.getItem("user") : null;
-      if (userStr) {
-        const user = JSON.parse(userStr);
-        if (user.role === "admin") {
-          router.push("/dashboard");
-        } else if (user.role === "teacher") {
-          router.push("/dashboard");
-        } else if (user.role === "student") {
-          router.push("/dashboard");
-        }
-      }
-    } catch (err: any) {
-      toast.error(err.response?.data?.error?.message || "Google login failed");
-    }
-  };
-
-  const handleGoogleError = () => {
-    toast.error("Google login failed. Please try again.");
   };
 
   return (
@@ -171,36 +134,27 @@ export const LoginForm: React.FC = () => {
           </Button>
         </form>
 
-        {GOOGLE_CLIENT_ID && (
-          <div className="mt-8">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-700" />
-              </div>
-              <div className="relative flex justify-center">
-                <span className="px-4 text-sm font-medium text-gray-400 bg-gray-800">
-                  Or continue with
-                </span>
-              </div>
+        {/* Demo Admin Credentials Box */}
+        <div className="mt-8 pt-6 border-t border-gray-700/80">
+          <div className="rounded-xl border border-gray-700/60 bg-gray-900/60 p-4 backdrop-blur-sm">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                🔑 Demo Admin Account
+              </span>
+              <button
+                type="button"
+                onClick={handleQuickFillAdmin}
+                className="text-xs font-medium text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors"
+              >
+                Auto-fill
+              </button>
             </div>
-
-            <div className="mt-6 w-full">
-              <div className="flex justify-center">
-                <div className="w-full" style={{ maxWidth: "100%" }}>
-                  <GoogleLogin
-                    onSuccess={handleGoogleSuccess}
-                    onError={handleGoogleError}
-                    useOneTap={false}
-                    shape="rectangular"
-                    theme="outline"
-                    size="large"
-                    text="signin_with"
-                  />
-                </div>
-              </div>
+            <div className="space-y-1 text-xs text-gray-300 font-mono">
+              <p><span className="text-gray-500">Email:</span> admin@examini.com</p>
+              <p><span className="text-gray-500">Password:</span> Admin@123</p>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
