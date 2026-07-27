@@ -8,6 +8,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/store/auth-store";
+import { API_BASE_URL } from "@/lib/constants";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 
@@ -52,7 +53,13 @@ export const LoginForm: React.FC = () => {
         router.push("/dashboard");
       }
     } catch (err: any) {
-      toast.error(err.response?.data?.error?.message || "Login failed");
+      if (!err.response) {
+        toast.error(`Cannot connect to backend (${API_BASE_URL}). Please verify NEXT_PUBLIC_API_URL and CORS settings.`, {
+          duration: 5000,
+        });
+      } else {
+        toast.error(err.response?.data?.error?.message || "Login failed");
+      }
     } finally {
       setIsSubmitting(false);
     }
