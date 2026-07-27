@@ -1,0 +1,439 @@
+@import "tailwindcss";
+
+/* Custom Scrollbar - Transparent background with primary color thumb */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2ab6a5 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #2ab6a5;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #229a8c;
+}
+
+:root {
+  --background: #111827;
+  --foreground: #f9fafb;
+  
+  /* Primary Colors - #2ab6a5 (Logo Color) */
+  --primary-50: #e6f7f5;
+  --primary-100: #b3e8e1;
+  --primary-200: #80d9cd;
+  --primary-300: #4dcab9;
+  --primary-400: #2ab6a5;
+  --primary-500: #2ab6a5;
+  --primary-600: #229a8c;
+  --primary-700: #1a7e73;
+  --primary-800: #12625a;
+  --primary-900: #0a4641;
+  
+  /* Success Colors - Green */
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+  
+  /* Error Colors - Red */
+  --error-50: #fef2f2;
+  --error-100: #fee2e2;
+  --error-500: #ef4444;
+  --error-600: #dc2626;
+  --error-700: #b91c1c;
+  
+  /* Warning Colors - Orange */
+  --warning-50: #fffbeb;
+  --warning-100: #fef3c7;
+  --warning-500: #f59e0b;
+  --warning-600: #d97706;
+  --warning-700: #b45309;
+  
+  /* Neutral Colors - Gray */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-inter);
+  
+  /* Primary */
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  
+  /* Success */
+  --color-success-50: var(--success-50);
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  
+  /* Error */
+  --color-error-50: var(--error-50);
+  --color-error-500: var(--error-500);
+  --color-error-600: var(--error-600);
+  
+  /* Warning */
+  --color-warning-50: var(--warning-50);
+  --color-warning-500: var(--warning-500);
+  --color-warning-600: var(--warning-600);
+  
+  /* Gray */
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+
+/* Ensure Inter font is inherited by all elements */
+html,
+body,
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+
+/* Custom scrollbar styles are defined at the top of the file */
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+}
+
+/* Shimmer animation for skeleton loaders */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+  background-image: linear-gradient(
+    to right,
+    #f3f4f6 0%,
+    #e5e7eb 20%,
+    #f3f4f6 40%,
+    #f3f4f6 100%
+  );
+}
+
+/* Glossy UI Enhancements */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.shadow-glow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+.shadow-glow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 30px rgba(59, 130, 246, 0.15);
+}
+
+.gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 0.75rem;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  padding: 1px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Smooth transitions with better easing */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Hardware acceleration for smooth animations */
+button, a, .card-glow, aside, [role="button"], .hover-lift {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Sidebar smooth transitions with hardware acceleration */
+aside {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  contain: layout style paint;
+}
+
+/* Custom smooth sidebar animation */
+.sidebar-container {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
+
+/* Mobile sidebar slide animation - professional off-canvas pattern */
+@media (max-width: 1023px) {
+  .sidebar-container {
+    left: 0;
+    top: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform: translate3d(-100%, 0, 0);
+    -webkit-transform: translate3d(-100%, 0, 0);
+  }
+  
+  .sidebar-container.mobile-open {
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
+}
+
+/* Desktop sidebar width animation - always visible */
+@media (min-width: 1024px) {
+  .sidebar-container {
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: width;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
+}
+
+.sidebar-content {
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform, max-width;
+  transform: translateZ(0);
+}
+
+.sidebar-text {
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+              max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s,
+              margin 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+  will-change: opacity, max-width, margin;
+}
+
+.sidebar-text-hidden {
+  opacity: 0;
+  max-width: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.sidebar-text-visible {
+  opacity: 1;
+  max-width: 200px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Main content smooth transition - perfectly synchronized with sidebar */
+.main-content-wrapper {
+  transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: margin-left;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  contain: layout style;
+  position: relative;
+}
+
+/* Prevent layout shifts and ensure smooth rendering */
+.main-content-wrapper > * {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Ensure header stays smooth during transition */
+.main-content-wrapper header {
+  transition: none;
+  transform: translateZ(0);
+}
+
+/* Ensure main content area is smooth */
+.main-content-wrapper main {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Enhanced button hover effects - smooth */
+button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px) translateZ(0);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0) translateZ(0);
+  transition-duration: 100ms;
+}
+
+/* Link hover effects */
+a {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Professional card styling - smooth hover */
+.card-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.card-glow:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 40px rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px) translateZ(0);
+}
+
+/* Smooth hover lift effect */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px) translateZ(0);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth scale on hover */
+.hover-scale {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05) translateZ(0);
+}
+
+/* Modal animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateZ(0);
+  }
+}
+
+.modal-enter {
+  animation: modalFadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-exit {
+  animation: modalFadeOut 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Indeterminate progress — used by the AI workspace, where the API exposes no
+   real progress signal and a determinate percentage would be fabricated. */
+@keyframes indeterminateSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+.indeterminate-slide {
+  animation: indeterminateSlide 1.6s ease-in-out infinite;
+  transition: none;
+}
+
+/* Dropdown animations */
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+.dropdown-enter {
+  animation: dropdownSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
