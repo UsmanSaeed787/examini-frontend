@@ -146,7 +146,7 @@ export const LoginForm: React.FC = () => {
           <div className="rounded-xl border border-gray-700/60 bg-gray-900/60 p-4 backdrop-blur-sm">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
-                🔑 Demo Admin Account
+                🔑 Admin Account
               </span>
               <button
                 type="button"

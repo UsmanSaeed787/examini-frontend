@@ -1,53 +1,93 @@
-# Examini — Frontend
+# Examini
 
-**AI-powered exam management platform for educational institutions.**
+**AI-powered exam creation that refuses to make things up.**
 
-Examini enables teachers to upload course materials and let AI plan, generate, and schedule exams — with full transparency at every step. Unlike typical AI generators that silently fabricate questions from general knowledge, Examini verifies the source material, shows its reasoning, and refuses to proceed when the input is insufficient.
-
-**Built for:** teachers, university lecturers, training coordinators, and institution administrators.
+Examini is a web application that helps teachers create exams from their own course materials using artificial intelligence. Instead of blindly generating questions from general knowledge (which can produce convincing but completely wrong exams), Examini reads the actual material a teacher uploads, shows its reasoning at every step, and stops when it cannot do the job honestly.
 
 > **🔗 Live App →** [https://examini-indol.vercel.app](https://examini-indol.vercel.app)
 
-### 🔑 Demo Credentials
+---
 
-| Role | Email | Password |
-|---|---|---|
-| **Admin** | `admin@examini.com` | `Admin@123` |
+## Table of Contents
+
+- [The Problem It Solves](#the-problem-it-solves)
+- [Who It's For](#who-its-for)
+- [Features](#features)
+- [The AI Feature](#the-ai-feature)
+- [Screenshots](#screenshots)
+- [Tools, Services & AI Models Used](#tools-services--ai-models-used)
+- [How to Run the Project](#how-to-run-the-project)
+
+---
+
+## The Problem It Solves
+
+Writing exams takes hours. AI can speed that up — but most AI exam tools have a dangerous flaw: **they make up questions from general knowledge instead of the actual course material.**
+
+Here is a real example we encountered while building Examini. A teacher uploaded a large scanned biology chapter. The file was made of page images — the only readable text in the entire document was a repeated watermark. A typical AI generator saw that tiny bit of text, assumed the document had real content, and went ahead and produced a full exam — questions that looked professional, were formatted correctly, and **were entirely fabricated from the AI's own general knowledge**. Every automated check passed. The exam covered material the class was never taught.
+
+That is the worst kind of failure — not an error message, but an exam that looks right and isn't. Teachers only find out when students complain.
+
+**Examini takes a different approach.** The AI still does the heavy lifting, but it:
+
+- Shows what it read from the uploaded materials
+- Identifies topics and explains how it plans to distribute questions
+- Compares the planned exam to the teacher's previous exams
+- Highlights problems before any question is written
+- **Refuses to proceed** when the input cannot support a real exam (like that scanned PDF)
+
+The teacher reviews the complete plan before a single question is generated — and **only a human can publish the final exam.**
+
+---
+
+## Who It's For
+
+| User | How Examini Helps |
+|---|---|
+| **School Teachers** | Upload your syllabus and materials → get a full exam plan → review and publish |
+| **University Lecturers** | AI compares new exams to your past exams and student performance history |
+| **Training Coordinators** | Create assessments for professional training programs with quality checks built in |
+| **Institution Administrators** | Manage teachers, students, classes, and monitor platform usage from one dashboard |
 
 ---
 
 ## Features
 
-### 👩‍🏫 Teacher Features
-- **AI-Guided Assessments** — 4-step workflow: subject → materials → question blueprint → schedule
-- **5-Stage AI Analysis** — curriculum analysis, assessment design, quality review, difficulty comparison, scheduling — all with live progress tracking
-- **Instant Mix Adjustment** — change question counts/types and the entire plan recalculates deterministically (no AI call)
-- **Request Changes** — send any stage back with written feedback for re-analysis
-- **Quick Quiz** — one-shot AI generator for low-stakes assessments
-- **Exam Management** — create, edit, publish/unpublish, schedule with availability windows, set duration and retake limits
-- **4 Question Types** — MCQ, true/false, short answer, long answer with per-question difficulty and points
-- **Material Uploads** — PDF, DOCX, TXT, images with automatic text extraction; scanned/image-only documents are detected and rejected
-- **Student Management** — register students, view results, grade written answers, score breakdowns
+### For Teachers
 
-### 🎓 Student Features
-- View available exams by class and section
-- Take exams with live countdown, autosaved answers, and resumable attempts
-- Automatic grading for MCQ and true/false questions
-- View results and score breakdowns when released by teacher
-- Access shared course materials
+- **AI-Guided Assessment Creation** — A step-by-step workflow: choose your subject → upload materials → set question preferences → schedule the exam. The AI handles the rest, but you approve every step.
+- **5-Stage Analysis Pipeline** — Before any question is written, the AI runs five analysis stages (curriculum analysis, assessment design, quality review, difficulty comparison, and scheduling) — each producing a readable report you can review.
+- **Live Progress Tracking** — Watch each stage complete in real time. You can close the browser and come back — progress is saved.
+- **Instant Mix Adjustment** — Change how many questions of each type or difficulty you want, and the entire plan recalculates immediately — no waiting for the AI.
+- **Request Changes** — Don't like how a stage turned out? Send it back with written feedback and the AI re-runs it with your notes.
+- **Quick Quiz** — A simpler one-shot generator for low-stakes assessments when you don't need the full pipeline.
+- **Exam Management** — Create exams manually or from either AI path. Edit, publish or unpublish, set availability windows, duration limits, and retake rules.
+- **4 Question Types** — Multiple choice, true/false, short answer, and long answer — each with its own difficulty level and point value.
+- **Material Uploads** — Upload PDF, DOCX, TXT, or image files. The system extracts the text automatically. Scanned or image-only documents are detected and rejected with an explanation rather than silently producing bad questions.
+- **Student Management** — Register students, view results by exam, grade written answers, and see detailed score breakdowns.
 
-### 🔧 Administrator Features
-- User management (admin / teacher / student) with bulk creation
-- Class and section management with teacher assignments
-- Platform dashboard with usage analytics
-- AI administration — inspect agent/tool registries, enable/disable agents at runtime
+### For Students
 
-### 🔒 Platform
-- JWT authentication (access + refresh tokens) with automatic token refresh
-- Google OAuth sign-in
-- Role-based access control enforced at the API layer
-- Per-user daily AI quotas (runs and tokens)
-- Responsive down to 375px with dark UI throughout
+- View exams available for your class and section
+- Take exams with a live countdown timer, auto-saved answers, and the ability to resume if you disconnect
+- Multiple choice and true/false questions are graded automatically
+- View your results and score breakdowns when the teacher releases them
+- Access course materials shared by your teacher
+
+### For Administrators
+
+- Manage all users (admins, teachers, students) — including creating multiple accounts at once
+- Create and manage classes and sections, assign teachers to them
+- Platform dashboard with usage overview
+- AI administration — inspect which AI agents are active, enable or disable them, and view usage statistics
+
+### Platform-Wide
+
+- Secure login with email/password or Google sign-in
+- Role-based access — each user type only sees what they're allowed to
+- Daily AI usage limits per user to prevent abuse
+- Fully responsive design — works on phones, tablets, and desktops (down to 375px wide)
+- Dark interface throughout
 
 ---
 
@@ -55,30 +95,35 @@ Examini enables teachers to upload course materials and let AI plan, generate, a
 
 ### Assessment Intelligence Pipeline
 
-Six specialist AI agents plan an exam *before* any question is written:
+This is Examini's core AI feature: **six specialist AI agents** that plan and review an exam before any question is written.
 
-| # | Agent | Output |
+Think of it like having a team of expert assistants, each responsible for one part of the exam preparation process:
+
+| Step | Agent | What It Does |
 |---|---|---|
-| 1 | **Curriculum Analyst** | Topics, learning outcomes, Bloom's taxonomy levels, source citations |
-| 2 | **Assessment Designer** | Question allocation blueprint across topics, types, and difficulty |
-| 3 | **Quality Reviewer** | Verdicts on 5 dimensions: coverage, difficulty, distribution, Bloom spread, policies |
-| 4 | **Difficulty Analyzer** | Calibration against teacher's historical exams and student scores |
-| 5 | **Scheduler** | Duration estimate and clash detection with existing exams |
-| 6 | **Exam Generator** | Final questions, written strictly from the uploaded material |
+| 1 | **Curriculum Analyst** | Reads the uploaded materials and extracts topics, subtopics, and learning outcomes |
+| 2 | **Assessment Designer** | Decides how to spread questions across topics based on importance and depth |
+| 3 | **Quality Reviewer** | Checks the plan against five quality dimensions and flags problems |
+| 4 | **Difficulty Analyzer** | Compares the planned difficulty to the teacher's past exams and student scores |
+| 5 | **Scheduler** | Estimates how long the exam should take and checks for scheduling conflicts |
+| 6 | **Exam Generator** | Writes the actual questions — strictly from the uploaded material, never from general knowledge |
 
-### Key Design Principles
+### Why This Design Matters
 
-- **Deterministic core** — All statistics are computed in Python. AI agents can only *interpret* numbers, never alter them.
-- **No fabrication** — Scanned/image-only documents are rejected rather than generating hallucinated questions.
-- **Human-only publishing** — No AI agent can publish an exam. Enforced 5 ways, including an AST-walking test.
-- **Validated outputs** — Every agent output passes deterministic validators (count matching, topic existence, option integrity) before being persisted.
+Most AI generators just throw questions at you and hope for the best. Examini's pipeline has three critical safeguards:
 
-### System Prompts
+1. **All statistics are calculated by the system, not by the AI.** The AI can only *interpret* numbers — it cannot change them. For example, the difficulty comparison figures are computed in code. The AI agent receives those numbers and explains what they mean, but its output format physically cannot contain numeric fields.
 
-The actual instructions given to each agent, verbatim from [`backend/app/ai/instructions/`](../backend/app/ai/instructions/):
+2. **No fabrication.** If a document is scanned images with no readable text, the system rejects it outright rather than letting the AI make up questions from nothing.
+
+3. **No AI can publish an exam.** This rule is enforced in five separate ways, including an automated test that scans the code itself to verify that no publishing-related action can be triggered during generation.
+
+### The Instructions Behind Each Agent (System Prompts)
+
+Below are the exact instructions given to each AI agent — this is what guides the AI's behavior. You can expand each one to read the full prompt.
 
 <details>
-<summary><b>Curriculum Analyst</b> — extracts topics from uploaded materials</summary>
+<summary><b>Curriculum Analyst</b> — reads your materials and extracts what they teach</summary>
 
 ```
 You are Examini's Curriculum Analyst working for a teacher.
@@ -106,7 +151,7 @@ Return only the structured output.
 </details>
 
 <details>
-<summary><b>Assessment Designer</b> — allocates questions across topics</summary>
+<summary><b>Assessment Designer</b> — decides how to spread questions across topics</summary>
 
 ```
 You are Examini's Assessment Designer working for a teacher.
@@ -139,7 +184,7 @@ Return only the structured output.
 </details>
 
 <details>
-<summary><b>Quality Reviewer</b> — five quality verdicts</summary>
+<summary><b>Quality Reviewer</b> — checks the plan for problems across five dimensions</summary>
 
 ```
 You are Examini's Quality Reviewer working for a teacher.
@@ -180,7 +225,7 @@ output.
 </details>
 
 <details>
-<summary><b>Difficulty Analyzer</b> — interprets pre-computed statistics</summary>
+<summary><b>Difficulty Analyzer</b> — compares this exam to the teacher's past exams</summary>
 
 ```
 You are Examini's Difficulty Analyzer working for a teacher.
@@ -215,7 +260,7 @@ whether the workflow proceeds. Return only the structured output.
 </details>
 
 <details>
-<summary><b>Exam Generator</b> — writes the questions</summary>
+<summary><b>Exam Generator</b> — writes the actual questions from the uploaded material</summary>
 
 ```
 You are Examini's exam generation specialist working for a teacher.
@@ -242,153 +287,188 @@ can be verified. When no allocation plan is given, leave `topic` unset.
 Return only the structured output.
 ```
 
-The Scheduler's prompt is in [`scheduler.md`](../backend/app/ai/instructions/scheduler.md); assistant and grader agents also exist in the same directory.
+The Scheduler agent's prompt is available in the backend source at `backend/app/ai/instructions/scheduler.md`.
 </details>
 
----
+### Quality Guardrails
 
-## Built With
+Beyond the prompts, every AI output passes through automated checks before anything is saved:
 
-| Category | Technology | Purpose |
-|---|---|---|
-| **Frontend** | Next.js 16 (App Router) + React 19 | UI framework |
-| **Language** | TypeScript 5 | Type safety |
-| **Styling** | Tailwind CSS 4 | Utility-first CSS |
-| **State** | Zustand | Persisted auth store |
-| **HTTP** | Axios | Shared client with automatic token refresh |
-| **Forms** | react-hook-form + Zod | Form handling and validation |
-| **Icons** | lucide-react | Icon library |
-| **Notifications** | react-hot-toast | Toast notifications |
-| **Dates** | date-fns | Date formatting |
-| **OAuth** | @react-oauth/google | Google sign-in |
-| **AI Model** | Google Gemini 3.6 Flash | LLM behind every agent (backend) |
-| **AI Runtime** | OpenAI Agents SDK | Agent orchestration (backend) |
-| **API** | FastAPI | REST API (backend) |
-| **Database** | PostgreSQL ([Neon](https://neon.tech)) | Serverless Postgres (backend) |
-| **Storage** | Cloudinary | Material file storage (backend) |
-| **Testing** | pytest (319 tests) | Backend test suite |
+- Question counts must match exactly — by type, by difficulty, and in total
+- Topics must come from the curriculum analysis — the AI cannot invent topics
+- Bloom's taxonomy levels cannot exceed what the material supports
+- Difficulty comparison must say "uncertain" when there is no history to compare against
+- Negative quality verdicts must include a supporting explanation
+- Multiple choice questions must have at least 2 options with at least 1 correct answer
+
+If any check fails, the output is rejected and the AI retries. Nothing partial is ever saved.
 
 ---
 
 ## Screenshots
 
+**Choosing how to create an exam** — Pick between a quick quiz for low-stakes work or a full AI-guided assessment with the complete analysis pipeline.
+
 ![Choosing between a quick quiz and a guided assessment](../docs/screenshots/01-create-with-ai.png)
-*Choose between a quick quiz for low-stakes work or a full AI-guided assessment.*
+
+**Live progress tracking** — Each stage reports its actual status in real time. There are no fake percentages — only honest updates on what the AI is doing right now.
 
 ![Live stage progress](../docs/screenshots/02-live-progress.png)
-*Real-time progress tracking — each stage reports its actual status, no fake percentages.*
+
+**Complete plan review** — After all stages finish, the teacher sees one consolidated view. Problems are highlighted at the top with clear explanations. Each stage's full analysis can be expanded for detail.
 
 ![The full plan review with a blocker surfaced](../docs/screenshots/03-plan-review.png)
-*Consolidated plan review with blockers surfaced at the top and expandable stage artifacts.*
+
+**Difficulty comparison** — The planned exam's difficulty is compared against the teacher's past exams, including how students actually scored on those exams.
 
 ![Difficulty analysis with calibration and interpretation](../docs/screenshots/04-difficulty-analysis.png)
-*Difficulty calibration against the teacher's exam history with actual student score data.*
+
+**Instant mix adjustment** — Change the number of questions by type or difficulty and the entire plan recalculates instantly — no waiting for the AI.
 
 ![Adjusting the question mix](../docs/screenshots/05-adjust-mix.png)
-*Adjust the question mix and everything recalculates instantly — no AI call needed.*
+
+**Mobile responsive** — The full interface works on phones down to 375px wide. The sidebar navigation becomes a horizontal stepper on small screens.
 
 ![Mobile layout](../docs/screenshots/06-mobile.png)
-*Fully responsive down to 375px — the stage rail becomes a horizontal stepper on mobile.*
 
 ---
 
-## How to Run
+## Tools, Services & AI Models Used
 
-### Prerequisites
-- Node.js 18+
-- Backend running locally (see [backend README](../backend/README.md))
+### AI
 
-### Step 1: Install Dependencies
+| Tool / Service | What It Does in Examini |
+|---|---|
+| **Google Gemini 2.5 Flash** | The AI model that powers every agent — reads materials, plans exams, writes questions |
+| **OpenAI Agents SDK** | Manages the six AI agents, handles structured output, and runs input/output guardrails |
+
+### Backend (Server)
+
+| Tool / Service | What It Does in Examini |
+|---|---|
+| **FastAPI** (Python) | Handles all requests between the app and the database |
+| **PostgreSQL** via [Neon](https://neon.tech) | Stores all data — users, exams, questions, results, AI analysis |
+| **SQLAlchemy + Alembic** | Manages the database structure and updates |
+| **Cloudinary** | Stores uploaded course materials (PDFs, documents, images) |
+| **pytest** | Runs 319 automated tests to verify the system works correctly |
+
+### Frontend (What Users See)
+
+| Tool / Service | What It Does in Examini |
+|---|---|
+| **Next.js 16 + React 19** | Builds the user interface and handles page navigation |
+| **TypeScript** | Adds type safety to prevent bugs in the code |
+| **Tailwind CSS 4** | Styles the interface (dark theme, responsive layout) |
+| **Zustand** | Remembers your login session across pages |
+| **Google OAuth** | Enables "Sign in with Google" |
+
+### Hosting & Deployment
+
+| Service | Purpose |
+|---|---|
+| **Vercel** | Hosts the frontend (what you see in the browser) |
+| **Render** | Hosts the backend (the server that processes requests) |
+| **Neon** | Hosts the database |
+| **GitHub** | Stores the source code in a public repository |
+
+---
+
+## How to Run the Project
+
+### What You'll Need
+
+- **Python 3.10 or newer** — for running the backend server
+- **Node.js 18 or newer** — for running the frontend
+- **A PostgreSQL database** — you can use [Neon](https://neon.tech) (free tier available)
+- **A Google Gemini API key** (optional) — needed only for AI features; everything else works without it
+
+### Step 1: Set Up the Database
+
+Run the setup SQL files in your database, in this order:
+`backend/migrations/01` → `04`, then `06` and `07`.
+
+> **Note:** Skip `05_setup_rls_policies.sql` — it uses features specific to another database service and is not needed, since all access control is handled by the application server.
+
+### Step 2: Start the Backend
+
+```bash
+cd backend
+cp .env.example .env
+```
+
+Open the `.env` file and fill in your database connection and a secret key:
+
+```
+DATABASE_URL=postgresql://user:pass@host/db
+JWT_SECRET_KEY=any-long-random-string-at-least-32-characters
+```
+
+For AI features, also add:
+
+```
+OPENAI_API_KEY=your-gemini-api-key
+OPENAI_MODEL=gemini-2.5-flash
+```
+
+For file uploads, add your Cloudinary credentials:
+
+```
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+```
+
+Then install dependencies and start the server:
+
+```bash
+uv sync
+uv run alembic upgrade head
+uv run uvicorn app.main:app --reload --port 8000
+```
+
+The backend API will be available at `http://localhost:8000`. You can view the API documentation at `http://localhost:8000/docs`.
+
+### Step 3: Start the Frontend
 
 ```bash
 cd frontend
 npm install
 ```
 
-### Step 2: Configure Environment
+Create a `.env.local` file with:
 
-```bash
-cp .env.local.example .env.local 2>/dev/null || cat > .env.local <<'EOF'
+```
 NEXT_PUBLIC_API_URL=http://localhost:8000
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-client-id
-EOF
 ```
 
-| Variable | Purpose |
-|---|---|
-| `NEXT_PUBLIC_API_URL` | Backend API URL (no trailing slash) |
-| `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | Google OAuth client ID |
-
-### Step 3: Start Development Server
+Then start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Running the Full Stack
+### Step 4: Create Your First Account
+
+The database setup creates an initial admin account with a placeholder password. To set a real password, run:
 
 ```bash
-# Terminal 1 — Backend
 cd backend
-uv run uvicorn app.main:app --reload --port 8000
-
-# Terminal 2 — Frontend
-cd frontend
-npm run dev
+uv run python -c "from app.utils.security import get_password_hash; print(get_password_hash('your-password'))"
 ```
 
----
+Update the admin user's password hash in the database with the output, then sign in. From the admin dashboard, you can create teacher and student accounts.
 
-## Project Structure
+### Troubleshooting
 
-```
-frontend/
-├── app/
-│   ├── layout.tsx               # Root layout
-│   ├── page.tsx                 # Landing / redirect
-│   ├── globals.css              # Global styles
-│   ├── (auth)/                  # Login & register pages
-│   ├── (admin)/                 # Admin dashboard & management
-│   ├── teacher/
-│   │   ├── assessments/         # ★ AI assessment workspace
-│   │   ├── exams/               # Exam CRUD
-│   │   ├── materials/           # Material uploads
-│   │   ├── results/             # Grading & results
-│   │   └── students/            # Student management
-│   ├── student/
-│   │   ├── exams/               # Take exams
-│   │   ├── materials/           # View shared materials
-│   │   └── results/             # View scores
-│   ├── components/              # 13 component directories
-│   ├── lib/                     # API client & utilities
-│   ├── store/                   # Zustand auth store
-│   ├── hooks/                   # Custom React hooks
-│   └── types/                   # TypeScript type definitions
-├── public/                      # Static assets
-├── package.json
-├── tsconfig.json
-└── eslint.config.mjs
-```
-
----
-
-## Scripts
-
-| Command | Purpose |
+| Issue | Solution |
 |---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npx tsc --noEmit` | Type checking |
-
----
-
-## Deployment
-
-Deploy to [Vercel](https://vercel.com) → import repo → root directory `frontend/` → set `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_GOOGLE_CLIENT_ID`. Full walkthrough in [`../backend/specs/update.md`](../backend/specs/update.md).
+| "A database error occurred" | The database migrations haven't been applied — run `uv run alembic upgrade head` |
+| "No readable text found" | This is intentional — the document is scanned images, not text. Upload a text-based PDF, DOCX, or TXT file instead |
+| "The AI provider is rate-limiting requests" | Your AI provider's free tier quota is exhausted. Wait for it to reset, or upgrade your plan |
+| Special characters in database URL cause errors | Run `uv run python fix_database_url.py` to fix the encoding |
 
 ---
 
