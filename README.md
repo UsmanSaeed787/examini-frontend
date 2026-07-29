@@ -2,7 +2,7 @@
 
 **AI-powered exam creation that refuses to make things up.**
 
-Examini is a web application that helps teachers create exams from their own course materials using artificial intelligence. Instead of blindly generating questions from general knowledge (which can produce convincing but completely wrong exams), Examini reads the actual material a teacher uploads, shows its reasoning at every step, and stops when it cannot do the job honestly.
+Examini is a complete exam management platform built for educational institutions. Teachers upload their own course materials and let AI plan, generate, and schedule exams — with full transparency at every step. Students take those exams online with live timers, auto-saved answers, and instant grading for objective questions. Administrators manage the entire institution — users, classes, sections, and AI settings — from a single dashboard. Unlike typical AI generators that silently fabricate questions from general knowledge, Examini verifies the source material, shows its reasoning, and refuses to proceed when the input is insufficient.
 
 > **🔗 Live App →** [https://examini-indol.vercel.app](https://examini-indol.vercel.app)
 
