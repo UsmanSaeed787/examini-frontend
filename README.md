@@ -22,23 +22,19 @@ Examini is a complete exam management platform built for educational institution
 
 ## The Problem It Solves
 
-Writing exams takes hours. AI can speed that up — but most AI exam tools have a dangerous flaw: **they make up questions from general knowledge instead of the actual course material.**
+Writing exams takes hours. AI can speed that up — but most AI exam tools have a dangerous flaw: **they make up questions from general knowledge instead of the actual course material.** The result? Exams that look professional, pass every automated check, and cover topics the class was never taught. Teachers only discover the problem when students start complaining.
 
-Here is a real example we encountered while building Examini. A teacher uploaded a large scanned biology chapter. The file was made of page images — the only readable text in the entire document was a repeated watermark. A typical AI generator saw that tiny bit of text, assumed the document had real content, and went ahead and produced a full exam — questions that looked professional, were formatted correctly, and **were entirely fabricated from the AI's own general knowledge**. Every automated check passed. The exam covered material the class was never taught.
+**Examini takes a different approach.** The AI does the heavy lifting, but with built-in accountability:
 
-That is the worst kind of failure — not an error message, but an exam that looks right and isn't. Teachers only find out when students complain.
-
-**Examini takes a different approach.** The AI still does the heavy lifting, but it:
-
-- Shows what it read from the uploaded materials
+- Shows exactly what it read from the uploaded materials
 - Identifies topics and explains how it plans to distribute questions
-- Compares the planned exam to the teacher's previous exams
+- Compares the planned exam's difficulty to the teacher's previous exams
 - Highlights problems before any question is written
-- **Refuses to proceed** when the input cannot support a real exam (like that scanned PDF)
+- **Refuses to proceed** when the uploaded material cannot support a proper exam
 
 The teacher reviews the complete plan before a single question is generated — and **only a human can publish the final exam.**
 
----
+
 
 ## Who It's For
 
