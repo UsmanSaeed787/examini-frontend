@@ -67,7 +67,7 @@ export default function AdminDashboard() {
       title: 'Exams',
       value: stats?.total_exams ?? 0,
       image: '/admin_img/exam.png',
-      href: '#',
+      href: null as string | null,
     },
   ];
 
@@ -117,7 +117,7 @@ export default function AdminDashboard() {
             <div
               key={index}
               onClick={() => stat.href && router.push(stat.href)}
-              className="bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:shadow-primary-500/20 transition-all duration-300 p-4 sm:p-6 cursor-pointer transform hover:-translate-y-1 border border-gray-700"
+              className={`bg-gray-800 rounded-xl shadow-lg transition-all duration-300 p-4 sm:p-6 border border-gray-700 ${stat.href ? 'cursor-pointer hover:shadow-xl hover:shadow-primary-500/20 transform hover:-translate-y-1' : ''}`}
             >
               <div className="flex items-center justify-between mb-3 sm:mb-4">
                 <div className="flex items-center justify-center">
