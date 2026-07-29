@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { GoogleLogin } from "@react-oauth/google";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuthStore } from "@/store/auth-store";
-import { API_BASE_URL, GOOGLE_CLIENT_ID } from "@/lib/constants";
+import { API_BASE_URL } from "@/lib/constants";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 
@@ -22,7 +22,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { login, loginWithGoogle, isLoading, error, clearError } = useAuthStore();
+  const { login, isLoading, error, clearError } = useAuthStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -66,19 +66,7 @@ export const LoginForm: React.FC = () => {
     }
   };
 
-  const handleGoogleSuccess = async (credentialResponse: any) => {
-    if (!credentialResponse.credential) {
-      toast.error("Google sign-in failed — no credential received.");
-      return;
-    }
-    try {
-      await loginWithGoogle(credentialResponse.credential);
-      toast.success("Login successful!");
-      router.push("/dashboard");
-    } catch (err: any) {
-      toast.error(err.response?.data?.error?.message || "Google sign-in failed");
-    }
-  };
+
 
   return (
     <div className="w-full">
@@ -156,27 +144,7 @@ export const LoginForm: React.FC = () => {
           </Button>
         </form>
 
-        {/* Google Sign-In */}
-        {GOOGLE_CLIENT_ID && (
-          <div className="relative z-10">
-            <div className="my-6 flex items-center gap-3">
-              <div className="flex-1 h-px bg-gray-700" />
-              <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">or continue with</span>
-              <div className="flex-1 h-px bg-gray-700" />
-            </div>
-            <div className="flex justify-center">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={() => toast.error("Google sign-in failed")}
-                theme="filled_black"
-                size="large"
-                width="100%"
-                shape="pill"
-                text="signin_with"
-              />
-            </div>
-          </div>
-        )}
+
 
         {/* Admin Credentials Box */}
         <div className="mt-8 pt-6 border-t border-gray-700/80">
