@@ -188,6 +188,14 @@ export const adminApi = {
     return response.data;
   },
   
+  getExams: async (page = 1, limit = 10, classId?: string, isPublished?: boolean) => {
+    const params = new URLSearchParams({ page: page.toString(), limit: limit.toString() });
+    if (classId) params.append('class_id', classId);
+    if (isPublished !== undefined) params.append('is_published', isPublished.toString());
+    const response = await api.get(`/api/admin/exams?${params}`);
+    return response.data;
+  },
+  
   getClasses: async () => {
     const response = await api.get('/api/admin/classes');
     return response.data;

@@ -67,7 +67,7 @@ export default function AdminDashboard() {
       title: 'Exams',
       value: stats?.total_exams ?? 0,
       image: '/admin_img/exam.png',
-      href: null as string | null,
+      href: '/exams',
     },
   ];
 
